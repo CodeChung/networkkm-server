@@ -1,4 +1,4 @@
-# Thingful Server
+# NetworkKM Server
 
 ## Setting Up
 
