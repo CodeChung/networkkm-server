@@ -42,8 +42,27 @@ friendsRouter
           world: await FriendsService.objectifyPeople(req.app.get('db'), [...new Set(world)]),
         }
         console.log(network)
-        res.send('hi')
+        res.json(network)
       })
+  })
+
+friendsRouter
+  .route('/identify')
+  .all(requireAuth)
+  .get((req, res, next) => {
+    FriendsService.getUser(req.app.get('db'), req.user.id)
+      .then(user => res.status(201).json(user))
+  })
+
+friendsRouter
+  .route('/identify/:id')
+  .all(requireAuth)
+  .get((req, res, next) => {
+    const { id } = req.params
+
+    console.log(id)
+    FriendsService.getUser(req.app.get('db'), id)
+      .then(user => res.status(201).json(user))
   })
 
 module.exports = friendsRouter
