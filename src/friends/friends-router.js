@@ -11,7 +11,7 @@ friendsRouter
   .get(requireAuth, (req,res,next) => {
     FriendsService.getFriends(req.app.get('db'), req.user.id)
       .then(async friendIds => {
-        console.log('friends', friendIds)
+        console.log('friends', new Set (friendIds))
         let community = []
         let world = []
         for (let i = 0; i < friendIds.length; i++) {
@@ -21,7 +21,7 @@ friendsRouter
           )
           acquaintances.forEach(id => community.push(id))
         }
-        console.log('community', community)
+        console.log('community', new Set (community))
         for (let i = 0; i < community.length; i++) {
           const connections = await FriendsService.getFriends(
             req.app.get('db'),
@@ -29,7 +29,19 @@ friendsRouter
           )
           connections.forEach(id => world.push(id))
         }
-        console.log('world', world)
+        console.log('world', new Set(world))
+
+        FriendsService.getUser(req.app.get('db'), 2)
+          .then(user => console.log('user', user))
+
+        let realFriends = []
+        let friends = [...new Set(friendIds)]
+
+        for (let i = 0; i < friends.length; i++) {
+          const friendObject = await FriendsService.getUser(req.app.get('db'), friends[i])
+          realFriends.push(friendObject)
+        }
+        console.log('friends', realFriends)
         res.send('hi')
       })
   })
