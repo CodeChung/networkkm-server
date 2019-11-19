@@ -21,7 +21,6 @@ friendsRouter
           )
           acquaintances.forEach(id => community.push(id))
         }
-        console.log('community', new Set (community))
         for (let i = 0; i < community.length; i++) {
           const connections = await FriendsService.getFriends(
             req.app.get('db'),
@@ -29,10 +28,6 @@ friendsRouter
           )
           connections.forEach(id => world.push(id))
         }
-        console.log('world', new Set(world))
-
-        FriendsService.getUser(req.app.get('db'), 2)
-          .then(user => console.log('user', user))
 
         let realFriends = []
         let friends = [...new Set(friendIds)]
@@ -41,7 +36,12 @@ friendsRouter
           const friendObject = await FriendsService.getUser(req.app.get('db'), friends[i])
           realFriends.push(friendObject)
         }
-        console.log('friends', realFriends)
+        const network = {
+          friends: await FriendsService.objectifyPeople(req.app.get('db'), [...new Set(friendIds)]),
+          community: await FriendsService.objectifyPeople(req.app.get('db'), [...new Set(community)]),
+          world: await FriendsService.objectifyPeople(req.app.get('db'), [...new Set(world)]),
+        }
+        console.log(network)
         res.send('hi')
       })
   })

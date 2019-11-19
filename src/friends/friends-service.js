@@ -17,8 +17,15 @@ const FriendsService = {
         last_name: user.last_name,
       }))
   },
-  removeDuplicateIds(ids) {
+  async objectifyPeople(db, ids) {
+    let people = []
 
+    for (let i = 0; i < ids.length; i++) {
+      const person = await FriendsService.getUser(db, ids[i])
+      people.push(person)
+    }
+
+    return people
   },
 }
 
