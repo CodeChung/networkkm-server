@@ -17,6 +17,11 @@ const FriendsService = {
         last_name: user.last_name,
       }))
   },
+  findUser(db, name) {
+    return db('users')
+      .where('first_name', 'like', `%${name}%`)
+      .orWhere('last_name', 'like', `%${name}%`)
+  },
   async objectifyPeople(db, ids) {
     let people = []
 

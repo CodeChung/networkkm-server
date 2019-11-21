@@ -11,7 +11,6 @@ friendsRouter
   .get(requireAuth, (req,res,next) => {
     FriendsService.getFriends(req.app.get('db'), req.user.id)
       .then(async friendIds => {
-        console.log('friends', new Set (friendIds))
         let community = []
         let world = []
         for (let i = 0; i < friendIds.length; i++) {
@@ -41,7 +40,6 @@ friendsRouter
           community: await FriendsService.objectifyPeople(req.app.get('db'), [...new Set(community)]),
           world: await FriendsService.objectifyPeople(req.app.get('db'), [...new Set(world)]),
         }
-        console.log(network)
         res.json(network)
       })
   })
@@ -60,9 +58,18 @@ friendsRouter
   .get((req, res, next) => {
     const { id } = req.params
 
-    console.log(id)
     FriendsService.getUser(req.app.get('db'), id)
       .then(user => res.status(201).json(user))
+  })
+
+friendsRouter
+  .route('/search/:name')
+  .all(requireAuth)
+  .get((req, res, next) => {
+    const { name } = req.params
+    console.log(name)
+    FriendsService.findUser(name)
+      .then(users => res.status(201).json(users))
   })
 
 module.exports = friendsRouter

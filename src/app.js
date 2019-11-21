@@ -8,6 +8,7 @@ const thingsRouter = require('./things/things-router')
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-router')
 const friendsRouter = require('./friends/friends-router')
+const messagingRouter = require('./messaging/messaging-router')
 
 const app = express()
 
@@ -21,6 +22,7 @@ app.use('/api/things', thingsRouter)
 app.use('/api/friends', friendsRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/messaging', messagingRouter)
 
 app.get('/', (req, res) => {
   res.send('Yolo')

@@ -6,5 +6,7 @@ CREATE TABLE users (
   email TEXT NOT NULL UNIQUE,
   date_created TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
   date_modified TIMESTAMP WITH TIME ZONE,
-  friends integer[]
+  friends integer[],
+  requests integer[],
+  alerts integer[]
 );
