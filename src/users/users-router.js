@@ -60,10 +60,8 @@ usersRouter
   .all(requireAuth)
   .post(jsonBodyParser, (req, res, next) => {
     const { first_name, last_name, email } = req.body
-    console.log(first_name, last_name, email)
-    console.log('EMAIL', email)
     UsersService.checkEmail(req.app.get('db'), email)
-      .then(userWithEmail => {
+      .then(async userWithEmail => {
         if (userWithEmail) {
           UsersService.sendFriendRequest(
             req.app.get('db'),
@@ -71,7 +69,15 @@ usersRouter
             userWithEmail.id
           )
         } else {
-          MessagingService.sendEmail(req.user.email, email, 'Join Me', 'Welcome to NetworkKm')
+          const user = await FriendsService.getUser(req.app.get('db'), req.user.id)
+          const message = `
+            Hi, <b>${first_name}</b>!
+
+            ${user.first_name} ${user.last_name} has invited you to Network KM.
+            Network KM is a network. Please click <a href='http://localhost:3000/'>here</a> to join!
+          `
+          MessagingService.sendEmail(req.user.email, email, 'Join Me On NetworkKM', message)
+
           const potentialUser = {
             first_name,
             password: 'Bobert',
