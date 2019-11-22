@@ -3,20 +3,28 @@ const nodemailer = require('nodemailer')
 
 const MessagingService = {
     sendEmail() {
+        console.log('cut')
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'hc9825@gmail.com',
-                pass: process.env.EMAIL
+                user: 'email@gmail.com',
+                pass: 'password goes here'
             }
         })
 
         const mailOptions = {
-            from: 'sender@email.com',
-            to: 'to@email.com',
-            subject: 'Subject of your email',
-            html: '<p>Your html here</p>'
+            from: 'hc9825@gmail.com',
+            to: 'kmarko30@aol.com',
+            subject: 'test',
+            html: '<p>Welcome to NetworkKM</p>'
         }
+
+        transporter.sendMail(mailOptions, function(err, info) {
+            if (err)
+                console.log(err)
+            else 
+                console.log(info)
+        })
     },
 }
 

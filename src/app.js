@@ -22,7 +22,7 @@ app.use('/api/things', thingsRouter)
 app.use('/api/friends', friendsRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
-app.use('/api/messaging', messagingRouter)
+app.use('/api/messages', messagingRouter)
 
 app.get('/', (req, res) => {
   res.send('Yolo')
