@@ -8,7 +8,6 @@ const jsonBodyParser = express.json()
 messagingRouter
   .route('/')
   .get(requireAuth, (req,res,next) => {
-    console.log('cheese')
     MessagingService.sendEmail()
   })
 

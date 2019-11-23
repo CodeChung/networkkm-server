@@ -22,6 +22,16 @@ const UsersService = {
       .returning('*')
       .then(([user]) => user)
   },
+  getUser(db, userId) {
+    return db('users')
+      .where('id', userId)
+      .first()
+  },
+  getUserFriendRequests(db, userId) {
+    return db('alerts')
+      .where('receiver', userId)
+      .where('type', 'request')
+  },
   insertPotentialUser(db, newUser) {
     // might want to create a separate table for potential email adds.
     return db

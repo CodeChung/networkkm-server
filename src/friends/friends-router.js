@@ -67,9 +67,15 @@ friendsRouter
   .all(requireAuth)
   .get((req, res, next) => {
     const { name } = req.params
-    console.log(name)
     FriendsService.findUser(name)
-      .then(users => res.status(201).json(users))
+      .then(user => {
+        let newUser = {
+          id: user.id,
+          first_name: user.first_name,
+          last_name: user.last_name,
+        }
+        res.status(201).json(newUser)
+      })
   })
 
 module.exports = friendsRouter

@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer')
 
 const MessagingService = {
     sendEmail(sender, receiver, subject, body) {
-        console.log('cut')
+        console.log('email')
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {

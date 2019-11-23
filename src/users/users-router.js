@@ -74,7 +74,7 @@ usersRouter
             Hi, <b>${first_name}</b>!
 
             ${user.first_name} ${user.last_name} has invited you to Network KM.
-            Network KM is a network. Please click <a href='http://localhost:3000/'>here</a> to join!
+            Network KM is a network. Please click <a href='http://localhost:3000/invite?from=${user.first_name}+${user.last_name}&to=${first_name}+${last_name}&email=${email}>here</a> to join!
           `
           MessagingService.sendEmail(req.user.email, email, 'Join Me On NetworkKM', message)
 
@@ -93,6 +93,22 @@ usersRouter
             ))
         }
       })
+  })
+
+usersRouter
+  .route('/id/:id')
+  .get((req, res, next) => {
+    const { id } = req.params
+    UsersService.getUser(req.app.get('db'), id)
+      .then(user => res.status(201).json(user))
+  })
+
+usersRouter
+  .route('/requests')
+  .all(requireAuth)
+  .get((req, res, next) => {
+    UsersService.getUserFriendRequests(req.app.get('db'), req.user.id)
+      .then(request => res.status(201).json(request))
   })
 
 module.exports = usersRouter
