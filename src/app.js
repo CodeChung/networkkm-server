@@ -10,6 +10,7 @@ const usersRouter = require('./users/users-router')
 const friendsRouter = require('./friends/friends-router')
 const messagingRouter = require('./messaging/messaging-router')
 const alertsRouter = require('./alerts/alerts-router')
+const blogRouter = require('./blog/blog-router')
 
 const app = express()
 
@@ -25,6 +26,7 @@ app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/messages', messagingRouter)
 app.use('/api/alerts', alertsRouter)
+app.use('/api/blog', blogRouter)
 
 app.get('/', (req, res) => {
   res.send('Yolo')
