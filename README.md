@@ -3,19 +3,19 @@
 ## Setting Up
 
 - Install dependencies: `npm install`
-- Create development and test databases: `createdb thingful`, `createdb thingful-test`
-- Create database user: `createuser thingful`
+- Create development and test databases: `createdb networkkm`, `createdb networkkm-test`
+- Create database user: `createuser postgres`
 - Grant privileges to new user in `psql`:
-  - `GRANT ALL PRIVILEGES ON DATABASE thingful TO thingful`
-  - `GRANT ALL PRIVILEGES ON DATABASE "thingful-test" TO thingful`
+  - `GRANT ALL PRIVILEGES ON DATABASE networkkm TO postgres`
+  - `GRANT ALL PRIVILEGES ON DATABASE "networkkm-test" TO postgres`
 - Prepare environment file: `cp example.env .env`
   - Replace values in `.env` with your custom values if necessary.
-- Bootstrap development database: `MIGRATION_DB_NAME=thingful npm run migrate`
-- Bootstrap test database: `MIGRATION_DB_NAME=thingful-test npm run migrate`
+- Bootstrap development database: `MIGRATION_DB_NAME=networkkm npm run migrate`
+- Bootstrap test database: `MIGRATION_DB_NAME=networkkm-test npm run migrate`
 
 ## Seeds
 
-1. In command line `psql -U <username> -d thingful -f ./path/to/blogful-api-auth/seeds/seed.thingful_tables.sql`
+1. In command line `psql -U <username> -d networkkm -f ./path/to/networkkm_server/seeds/seed.networkkm_tables.sql`
   a. seed for main db
 
 ## Note for Windows users
@@ -42,8 +42,8 @@ timezone = 'UTC'
 
 ## Sample Data
 
-- To seed the database for development: `psql -U thingful -d thingful -a -f seeds/seed.thingful_tables.sql`
-- To clear seed data: `psql -U thingful -d thingful -a -f seeds/trunc.thingful_tables.sql`
+- To seed the database for development: `psql -U networkkm -d networkkm -a -f seeds/seed.networkkm_tables.sql`
+- To clear seed data: `psql -U networkkm -d networkkm -a -f seeds/trunc.networkkm_tables.sql`
 
 ## Scripts
 
