@@ -1,0 +1,8 @@
+CREATE TABLE blog (
+  author INTEGER
+    REFERENCES users(id) ON DELETE CASCADE NOT NULL,
+  title TEXT NOT NULL,
+  date TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
+  html TEXT NOT NULL,
+  readers integer[] NOT NULL
+);
