@@ -108,7 +108,7 @@ usersRouter
   .all(requireAuth)
   .get((req, res, next) => {
     UsersService.getUserFriendRequests(req.app.get('db'), req.user.id)
-      .then(request => res.status(201).json(request))
+      .then(requests => res.status(201).json(requests))
   })
 
 module.exports = usersRouter

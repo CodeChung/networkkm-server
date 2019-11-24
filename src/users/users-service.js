@@ -31,6 +31,16 @@ const UsersService = {
     return db('alerts')
       .where('receiver', userId)
       .where('type', 'request')
+      .then(async alerts => {
+        let requests = []
+
+        for (let i = 0; i < alerts.length; i++) {
+          let friendRequest = await this.getUser(db, alerts[i].sender)
+          requests.push(friendRequest)
+        }
+
+        return requests
+      })
   },
   insertPotentialUser(db, newUser) {
     // might want to create a separate table for potential email adds.

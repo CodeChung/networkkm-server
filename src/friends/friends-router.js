@@ -78,4 +78,30 @@ friendsRouter
       })
   })
 
+friendsRouter
+  .route('/request')
+  .all(requireAuth)
+  .post(jsonBodyParser, (req, res, next) => {
+    const { friend, action } = req.body
+
+    console.log(friend, action)
+
+    if (action === 'ACCEPT') {
+      FriendsService.acceptRequest(
+        req.app.get('db'),
+        req.user.id,
+        friend
+      )
+        .then(acceptedFriend => res.status(201).json(acceptedFriend))
+    } else if (action === 'DELETE') {
+      FriendsService.deleteRequest(
+        req.app.get('db'),
+        req.user.id,
+        friend
+      )
+        .then(deletedFriend => res.status(201).json(deletedFriend))
+    }
+  })
+
+
 module.exports = friendsRouter

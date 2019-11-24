@@ -7,6 +7,9 @@ const FriendsService = {
       .first()
       .then(user => user.friends)
   },
+  acceptRequest(db, userId, friendId) {
+    console.log(userId, friendId)
+  },
   getUser(db, id) {
     return db('users')
       .where({ id })
