@@ -7,8 +7,37 @@ const FriendsService = {
       .first()
       .then(user => user.friends)
   },
-  acceptRequest(db, userId, friendId) {
-    console.log(userId, friendId)
+  async acceptRequest(db, userId, friendId) {
+    console.log('user', userId, 'friend', friendId)
+    // We update both users' friend lists then delete alert
+    let userFriends = await this.getFriends(db, userId)
+    let friendsList = await this.getFriends(db, friendId)
+
+    userFriends = [...userFriends, friendId]
+    friendsList = [...friendsList, userId]
+
+    db('alerts')
+      .where({
+        'sender': friendId,
+        'receiver': userId,
+        'type': 'request'
+      })
+      .del()
+      .then(res => res)
+
+    db('users')
+      .where('id', userId)
+      .update('friends', userFriends)
+      .then(res => res)
+
+    db('users')
+      .where('id', friendId)
+      .update('friends', friendsList)
+      .then(res => res)
+
+    console.log('sender', friendId, friendsList, 'receiver', userId, userFriends)
+
+    return friendId
   },
   getUser(db, id) {
     return db('users')

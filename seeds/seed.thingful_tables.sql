@@ -7,7 +7,8 @@ TRUNCATE
 INSERT INTO users (first_name, last_name, email, password, friends)
 VALUES
   ('Keith', 'Marko', 'kmarko30@aol.com', '$2a$12$S8aZJkKbw/VggLPWZizy7uhJmovTMf3D0GR.AC0vgDftk5PxfIEK2', '{2,3,4,5,6}'),
-  ('Harry', 'Chung', 'hc9825@gmail.com', '$2a$12$gV3yYtNzu.6DgBeP1PcSHeiJT.DYURnB0dlE9K8DMoyPtp3YHBwtm', '{1,3}'),
+  ('Harry', 'Chung', 'hc9825@gmail.com', '$2a$12$gV3yYtNzu.6DgBeP1PcSHeiJT.DYURnB0dlE9K8DMoyPtp3YHBwtm', '{1,4}'),
+  ('Barry', 'Bonds', 'harry.chung94@gmail.com', '$2a$12$gV3yYtNzu.6DgBeP1PcSHeiJT.DYURnB0dlE9K8DMoyPtp3YHBwtm', '{}'),
   ('Charlie', 'AAA', 'Charlie@gmail.com', '$2a$12$/y8KxrkZ19gX2.Rf268Ij.7KkjOZOy060xtSzUYzB1sFjk2JyhjaS', '{1,2}'),
   ('Charlie', 'AAB', 'Charldie@gmail.com', '$2a$12$/y8KxrkZ19gX2.Rf268Ij.7KkjOZOy060xtSzUYzB1sFjk2JyhjaS', '{1,2}'),
   ('Charlie', 'AAC', 'Charlisrgafe@gmail.com', '$2a$12$/y8KxrkZ19gX2.Rf268Ij.7KkjOZOy060xtSzUYzB1sFjk2JyhjaS', '{1,2,3,4,6}'),
