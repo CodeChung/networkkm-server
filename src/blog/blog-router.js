@@ -14,4 +14,13 @@ blogRouter
         .then(posts => res.status(201).json(posts))
   })
 
+blogRouter
+  .route('/comments/:blogId')
+  .all(requireAuth)
+  .get((req, res, next) => {
+      const { blogId } = req.params 
+      blogService.getBlogComments(req.app.get('db'), blogId)
+        .then(comments => res.status(201).json(comments))
+  })
+
 module.exports = blogRouter

@@ -36,4 +36,37 @@ VALUES
   ('Charlie', 'BAD', 'Charlie@gmail.gfdcom', '$2a$12$/y8KxrkZ19gX2.Rf268Ij.7KkjOZOy060xtSzUYzB1sFjk2JyhjaS', '{14,2}'),
   ('Charlie', 'BAE', 'Charlie@gmail.comsdf', '$2a$12$/y8KxrkZ19gX2.Rf268Ij.7KkjOZOy060xtSzUYzB1sFjk2JyhjaS', '{1,24}'),
   ('Charlie', 'BAF', 'Charlie@gmail.cogsfddm', '$2a$12$/y8KxrkZ19gX2.Rf268Ij.7KkjOZOy060xtSzUYzB1sFjk2JyhjaS', '{11,20}');
+
+INSERT INTO blog (author, title, html, readers)
+VALUES
+  (1, 'Blog 1', 'dabasbas', '{}'),
+  (1, 'Blog 2', 'dabasbas', '{}'),
+  (1, 'Blog 3', 'dabasbas', '{}'),
+  (1, 'Blog 4', 'dabasbas', '{}'),
+  (1, 'Blog 5', 'dabasbas', '{}'),
+  (1, 'Blog 7', 'dabasbas', '{}'),
+  (2, 'Blog 8', 'dabasbas', '{}'),
+  (2, 'Blog 9', 'dabasbas', '{}'),
+  (2, 'Blog 10', 'dabasbas', '{}'),
+  (2, 'Blog 11', 'dabasbas', '{}');
+
+INSERT INTO blog_comments (blog_id, user_id, comment)
+VALUES
+  (1, 1, 'Great Post!!'),
+  (1, 2, 'I agree'),
+  (1, 3, 'Wow I love it'),
+  (9, 1, 'Now thats a blog post'),
+  (10, 1, 'Great Post!!'),
+  (10, 4, 'Why did you write this?'),
+  (10, 5, 'Preach!!!'),
+  (10, 6, 'Ive been saying the same thing for years'),
+  (2, 3, 'You should become a writer'),
+  (2, 4, 'You should shut your mouth'),
+  (8, 6, 'Great Post!!'),
+  (2, 4, 'Great Post!!'),
+  (5, 4, 'Great Post!!'),
+  (1, 8, 'Great Post!!'),
+  (1, 9, 'Great Post!!');
+  
+
 COMMIT;
