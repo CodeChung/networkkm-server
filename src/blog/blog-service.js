@@ -20,6 +20,12 @@ const BlogService = {
                 first_name: comment.first_name,
                 last_name: comment.last_name,
             })))
+    },
+    postComment(db, newComment) {
+        return db('blog_comments')
+            .insert(newComment)
+            .returning('comment')
+            .then(res => res)
     }
 }
 
