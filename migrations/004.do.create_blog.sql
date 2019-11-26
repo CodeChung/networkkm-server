@@ -4,6 +4,6 @@ CREATE TABLE blog (
     REFERENCES users(id) ON DELETE CASCADE NOT NULL,
   title TEXT NOT NULL,
   date TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
-  html TEXT NOT NULL,
+  html jsonb NOT NULL,
   readers integer[] NOT NULL
 );

@@ -26,6 +26,12 @@ const BlogService = {
             .insert(newComment)
             .returning('comment')
             .then(res => res)
+    },
+    postBlog(db, newBlog) {
+        return db('blog')
+            .insert(newBlog)
+            .returning('*')
+            .then(newBlogPost => newBlogPost)
     }
 }
 

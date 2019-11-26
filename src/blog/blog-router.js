@@ -13,6 +13,12 @@ blogRouter
     BlogService.getUserBlog(req.app.get('db'), req.user.id)
       .then(posts => res.status(201).json(posts))
   })
+  .post(jsonBodyParser, (req, res, next) => {
+    const { blog } = req.body
+    console.log(blog)
+    BlogService.postBlog(req.app.get('db'), blog)
+      .then(newBlog => res.status(301).json(newBlog))
+  })
 
 blogRouter
   .route('/comments/:blogId')
