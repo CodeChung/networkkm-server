@@ -14,9 +14,7 @@ blogRouter
       .then(posts => res.status(201).json(posts))
   })
   .post(jsonBodyParser, (req, res, next) => {
-    const { blog } = req.body
-    console.log(blog)
-    BlogService.postBlog(req.app.get('db'), blog)
+    BlogService.postBlog(req.app.get('db'), req.body)
       .then(newBlog => res.status(301).json(newBlog))
   })
 
