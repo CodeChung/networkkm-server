@@ -8,5 +8,6 @@ CREATE TABLE users (
   date_modified TIMESTAMP WITH TIME ZONE,
   friends integer[],
   requests integer[],
-  alerts integer[]
+  alerts integer[],
+  profile_picture TEXT
 );
